@@ -1,0 +1,23 @@
+{
+  "name": "@chapa_et/inline.js",
+  "version": "1.0.0",
+  "description": "Bring the beauty of inline elements to your web pages to make payments easier.",
+  "main": "inline.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chapa-Et/inline.js.git"
+  },
+  "keywords": [
+    "chapa",
+    "js"
+  ],
+  "author": "Israel Goytom",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Chapa-Et/inline.js/issues"
+  },
+  "homepage": "https://github.com/Chapa-Et/inline.js#readme"
+}
