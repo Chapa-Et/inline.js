@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Online Store Checkout</title>
+    <script src="https://js.chapa.co/v1/inline.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .checkout-container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .checkout-header img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .checkout-header h1 {
+            font-size: 24px;
+            margin: 0;
+            color: #333;
+        }
+
+        .checkout-header p {
+            font-size: 16px;
+            color: #666;
+            margin: 5px 0 0;
+        }
+
+        .order-summary {
+            margin-bottom: 20px;
+        }
+
+        .order-summary h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .order-summary .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .order-summary .item .description {
+            color: #555;
+        }
+
+        .order-summary .item .price {
+            color: #333;
+        }
+
+        .order-summary .total {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        /* #chapa-phone-input-container .chapa-phone-input-wrapper {
+            display: flex;
+            align-items: center;
+        } */
+
+  
+
+
+        #chapa-payment-methods {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .checkout-footer {
+            text-align: center;
+        }
+
+        button#chapa-pay-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            background-color: #7DC400;
+            color: #FFFFFF;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button#chapa-pay-button:hover {
+            background-color: #6BB300;
+        }
+
+        #chapa-error-container {
+            color: #FF0000;
+            font-size: 14px;
+            margin-top: -15px;
+            margin-bottom: 15px;
+            display: none;
+            text-align: center;
+        }
+
+        #chapa-loading-container {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .chapa-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #007BFF;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <img src="https://beshgebeya.com/images/Besh_Gebeya_Logo.png" alt="Merchant Logo">
+            <h1>Your Own Checkout</h1>
+            <p>Make Payments Right From Your Website</p>
+        </div>
+
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div class="item">
+                <span class="description">Onions</span>
+                <span class="price">12 ETB</span>
+            </div>
+            <div class="item">
+                <span class="description">Mobile Charger</span>
+                <span class="price">45 ETB</span>
+            </div>
+            <div class="item">
+                <span class="description">VAT (15%)</span>
+                <span class="price">8.55 ETB</span>
+            </div>
+            <div class="total">
+                <span>Total</span>
+                <span>65.55 ETB</span>
+            </div>
+        </div>
+
+        <div id="chapa-inline-form"></div>
+
+        <div class="checkout-footer">
+            <div id="chapa-error-container"></div>
+            <div id="chapa-loading-container">
+                <div class="chapa-spinner"></div>
+                <p>Please wait while we process your payment...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const chapa = new ChapaCheckout({
+            publicKey: 'CHAPUBK_TEST-hRNRrZ3KxlF1HjYk8PLW4ISuwE4CO1KV',
+            customizations: {
+                buttonText: 'Pay Now'
+            },
+            availablePaymentMethods: ['telebirr', 'cbebirr', 'ebirr', 'mpesa', 'chapa'],
+            showPaymentMethodsNames: false,
+            amount: '65.55', 
+            currency: 'ETB',
+            mobile: '0911223344', 
+
+            // returnUrl: 'https://beshgebeya.com,
+            callbackUrl: 'https://webhook.site/9ef322ef-edeb-42e2-b4a3-50b7f1ac4e6f',
+        });
+
+        chapa.initialize();
+    </script>
+</body>
+</html>
