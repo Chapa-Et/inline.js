@@ -130,7 +130,7 @@
             font-size: 18px;
             border: none;
             cursor: pointer;
-            background-color: #7DC400;
+            background-color: #1c15a8;
             color: #FFFFFF;
             border-radius: 5px;
             transition: background-color 0.3s ease;
@@ -218,7 +218,8 @@
         const chapa = new ChapaCheckout({
             publicKey: 'CHAPUBK_TEST-hRNRrZ3KxlF1HjYk8PLW4ISuwE4CO1KV',
             customizations: {
-                buttonText: 'Pay Now'
+                buttonText: 'Pay Now',
+                successMessage: 'Thank you for shopping with us!',
             },
             availablePaymentMethods: ['telebirr', 'cbebirr', 'ebirr', 'mpesa', 'chapa'],
             showPaymentMethodsNames: false,
