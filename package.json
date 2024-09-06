@@ -14,7 +14,9 @@
     "chapa",
     "js"
   ],
-  "author": "Israel Goytom",
+  "author": [ 
+    "Israel Goytom",
+    "Nigusu Kassahun"
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Chapa-Et/inline.js/issues"
