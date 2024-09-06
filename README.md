@@ -155,6 +155,7 @@ To view the examples, simply open the HTML files in your web browser:
 - `showFlag`: Boolean to determine if the country flag should be shown (default: `true`).
 - `showPaymentMethodsNames`: Boolean to determine if payment method names should be displayed (default: `true`).
 - `onSuccessfulPayment`: A callback function that is executed upon successful payment.
+- `customizations.successMessage`: A custom message to show on successful payment.
 - `onPaymentFailure`: A callback function that is executed if the payment fails.
 - `onClose`: A callback function that is executed when the payment popup is closed.
 
