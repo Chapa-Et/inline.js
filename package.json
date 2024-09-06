@@ -1,6 +1,6 @@
 {
   "name": "@chapa_et/inline.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bring the beauty of inline elements to your web pages to make payments easier.",
   "main": "inline.js",
   "scripts": {
